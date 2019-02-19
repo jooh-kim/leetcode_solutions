@@ -2,6 +2,7 @@ package easyproblems;
 
 import java.lang.Integer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class easy_solution {
@@ -18,8 +19,10 @@ class easy_solution {
         */
 
         //int rel = var1.reverse(-123);
-        boolean result = var1.isPalindrome(10);
-        System.out.println(result);
+        //boolean result = var1.isPalindrome(10);
+        //System.out.println(result);
+        String[] strs = {"flower","flow","flight"};
+        var1.longestCommonPrefix(strs);
     }
 
     public int[] twoSum(int[] nums, int target) {
@@ -119,5 +122,40 @@ class easy_solution {
         }
 
     }
+
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        //initialize result listnode
+        ListNode head = new ListNode(0);
+        head.next = null;
+
+
+        while(l1 != null && l2 != null){
+            if(l1.val >= l2.val){
+                head.next = l1;
+                l1 = l1.next;
+            }
+            else{
+                head.next = l2;
+                l2 = l2.next;
+            }
+        }
+        if (l1 != null){
+            head.next = l1;
+        }
+        else if (l2 != null){
+            head.next = l2;
+        }
+
+        return head.next;
+    }
+}
+
+class ListNode {
+    int val;
+    ListNode next;
+
+    //Constructor
+    ListNode(int x) { val = x; }
 }
 
