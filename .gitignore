@@ -1,0 +1,11 @@
+# Don't track content of these folders
+
+.idea/
+easyproblems/
+out/
+.idea/easy_problems.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+.idea/libraries/src.xml
+*.iml
