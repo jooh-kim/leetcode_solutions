@@ -1,9 +1,4 @@
 # Don't track content of these folders
 .idea/
 out/
-easy_problems/.idea/easy_problems.iml
-easy_problems/.idea/misc.xml
-easy_problems/.idea/modules.xml
-easy_problems/.idea/workspace.xml
-easy_problems/.idea/libraries/src.xml
 *.iml
