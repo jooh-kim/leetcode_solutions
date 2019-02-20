@@ -22,7 +22,6 @@ class easy_solution {
         //boolean result = var1.isPalindrome(10);
         //System.out.println(result);
         String[] strs = {"flower","flow","flight"};
-        var1.longestCommonPrefix(strs);
     }
 
     public int[] twoSum(int[] nums, int target) {
