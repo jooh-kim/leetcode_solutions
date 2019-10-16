@@ -37,5 +37,11 @@ class TestMaxSubArray(unittest.TestCase):
         lst = [-2,1,-3,4,-1,2,1,-5,4]
         self.assertEquals(6, ls.maxSubArray(lst))
 
+
+class test_groupAnagrams(unittest.TestCase):
+    def test_one(self):
+        lst = ["eat", "tea", "tan", "ate", "nat", "bat"]
+        self.assertEquals([['tan', 'nat'], ['bat'], ['eat', 'tea', 'ate']], ls.groupAnagrams(lst))
+
 if __name__ == '__main__':
     unittest.main()

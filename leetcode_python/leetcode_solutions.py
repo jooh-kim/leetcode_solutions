@@ -153,3 +153,75 @@ def maxSubArray(nums):
                 max_global = max_soFar
             i += 1
         return max_global
+
+""" 
+Given an array of strings, group anagrams together.
+
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+"""
+def groupAnagrams(strs):
+    """
+    :type strs: List[str]
+    :rtype: List[List[str]]
+    """
+
+    """
+    My thought process:
+        1. I can sort the words so that if two words are anagrams, they will have the same order.
+        2. create a dictionary with the sorted word as a key, any that match include it in.
+    """
+    anagram_dict = dict()
+    i = 0
+    while i < len(strs):
+        word = ''.join(sorted(strs[i]))
+        if word not in anagram_dict:
+            # anagramed word not in dict
+            anagram_dict[word] = [strs[i]]
+        else:
+            # anagramed word in dict, search the list
+            lst = anagram_dict[word]
+            # if strs[i] not in anagram_dict[word]:
+            anagram_dict[word].append(strs[i])
+        i+=1
+    result = []
+    for key in anagram_dict:
+        result.append(anagram_dict[key])
+    print(result)
+
+"""  
+There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
+
+You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). 
+You begin the journey with an empty tank at one of the gas stations.
+
+Return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1.
+
+Note:
+
+If there exists a solution, it is guaranteed to be unique.
+Both input arrays are non-empty and have the same length.
+Each element in the input arrays is a non-negative integer.
+"""
+def canCompleteCircuit(gas, cost):
+    """
+    :type gas: List[int]
+    :type cost: List[int]
+    :rtype: int
+    """
+    if (sum(gas) - sum(cost)) < 0:
+        return -1
+    else:
+        i = 0
+        while i < len(gas):
+            if gas[i] > cost[i]:
+                return i
+            i+=1
+        return i
+
+    
