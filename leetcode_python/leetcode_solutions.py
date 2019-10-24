@@ -223,5 +223,131 @@ def canCompleteCircuit(gas, cost):
                 return i
             i+=1
         return i
+""" 
+You are given two non-empty linked lists representing two non-negative integers. 
+The digits are stored in reverse order and each of their nodes contain a single digit. 
+Add the two numbers and return it as a linked list.
 
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+"""
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+#Try to solve with recusion later.
+def addTwoNumbers(self, l1, l2):
+    """
+    :type l1: ListNode
+    :type l2: ListNode
+    :rtype: ListNode
+    """
+    result_head = ListNode(0)
+    temp = result_head
+    carryover = 0
+    # remainder = 0
+    while l1 != None and l2 != None:
+        cur_sum = l1.val + l2.val + carryover
+        if cur_sum > 9:
+            cur_sum = cur_sum % 10
+            carryover = 1
+        else:
+            carryover = 0
+        temp.next = ListNode(cur_sum)
+        temp = temp.next
+        l1 = l1.next
+        l2 = l2.next
     
+    if l1 == None and l2 != None:
+        while l2 != None:
+            cur_sum = l2.val + carryover
+            if cur_sum > 9:
+                cur_sum = cur_sum % 10
+                carryover = 1
+            else:
+                carryover = 0
+            temp.next = ListNode(cur_sum)
+            temp = temp.next
+            l2 = l2.next
+    elif l1 != None and l2 == None:
+        while l1 != None:
+            cur_sum = l1.val + carryover
+            if cur_sum > 9:
+                cur_sum = cur_sum % 10
+                carryover = 1
+            else:
+                carryover = 0
+            temp.next = ListNode(cur_sum)
+            temp = temp.next
+            l1 = l1.next
+    
+    return result_head.next
+
+""" 
+Longest Substring Without Repeating Characters
+
+Given a string, find the length of the longest substring without repeating characters.
+
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", with the length of 3. 
+"""
+def lengthOfLongestSubstring(s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    sub_dict = {}
+    max_cur = ""
+    max_so_far = ""
+    i = 0
+
+    while i < len(s):
+        if s[i] not in sub_dict:
+            sub_dict[s[i]] = i
+            max_cur = max_cur + s[i]
+        else:
+            # letter in dict, so new index is the index after the initial duplicate
+            i = sub_dict[s[i]] + 1
+            sub_dict.clear()
+
+            max_cur = s[i]
+            sub_dict[s[i]] = i
+        if len(max_cur) >= len(max_so_far):
+                max_so_far = max_cur
+        i+=1
+            
+    return len(max_so_far)
+
+def lengthOfLongestSubstring2(s):
+    dicts = {}
+    maxlength = start = 0
+    for i,value in enumerate(s):
+        if value in dicts:
+            sums = dicts[value] + 1
+            if sums > start:
+                start = sums
+        num = i - start + 1
+        if num > maxlength:
+            maxlength = num
+        dicts[value] = i
+    return maxlength
+
+def main():
+    print(lengthOfLongestSubstring2("abcabcbb"))
+    print(lengthOfLongestSubstring2("bbbbb"))
+    print(lengthOfLongestSubstring2(""))
+    print(lengthOfLongestSubstring2("pwwkew"))
+    print(lengthOfLongestSubstring("abcdafgh"))
+    print(lengthOfLongestSubstring("abcdafghpabcdef"))
+    print(lengthOfLongestSubstring2("dvdf"))
+    print(lengthOfLongestSubstring2("abcabcbbf"))
+
+if __name__== "__main__":
+    main()
