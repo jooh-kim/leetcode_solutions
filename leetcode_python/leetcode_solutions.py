@@ -339,15 +339,78 @@ def lengthOfLongestSubstring2(s):
         dicts[value] = i
     return maxlength
 
+def recursion_sum(int_arr):
+    if int_arr == []:
+        return 0
+    else:
+        return int_arr.pop() + recursion_sum(int_arr)
+
+def sumTriangle(arr):
+
+    if len(arr) <= 1:
+        print(arr)
+        return
+
+    # at every call, sum should happen.
+    temp_arr = [0]*(len(arr)-1)
+    i = 0
+    while i < len(arr) - 1:
+        temp_arr[i] = arr[i]+arr[i+1]
+        i+=1
+    
+    sumTriangle(temp_arr)
+    print(arr)
+
+def consecutive_sum(arr,result):
+    if len(arr) < 2:
+        return
+    consecutive_sum(arr[1:],result)
+    result.append(arr[0]+arr[1])
+
+    return
+
+""" 
+if input array is {1, 2, 3, 4} and r is 2, 
+then output should be {1, 2}, {1, 3}, {1, 4}, {2, 3}, {2, 4} and {3, 4}.
+"""
+def allPossibleComb(arr, r):
+    if r > len(arr):
+        print("Wrong input, r is greater than arr")
+        return 0
+
+    # current combination
+    result = [0]*r
+    allPossibleCombHelper(arr, result, 0, len(arr)-1, 0, r)
+
+def allPossibleCombHelper(arr, result, start, end, index, r):
+    # current result is full, print
+    if index == r:
+        print(result)
+        return
+    i = start
+    while i <= end and end - i + 1 >= r - index:
+        result[index] = arr[i]
+        allPossibleCombHelper(arr, result, start+1, end, index+1, r)
+        i+=1
+
+def longestPalindrome(self, s):
+    """
+    :type s: str
+    :rtype: str
+
+    Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+    """
+
+         
+
 def main():
-    print(lengthOfLongestSubstring2("abcabcbb"))
-    print(lengthOfLongestSubstring2("bbbbb"))
-    print(lengthOfLongestSubstring2(""))
-    print(lengthOfLongestSubstring2("pwwkew"))
-    print(lengthOfLongestSubstring("abcdafgh"))
-    print(lengthOfLongestSubstring("abcdafghpabcdef"))
-    print(lengthOfLongestSubstring2("dvdf"))
-    print(lengthOfLongestSubstring2("abcabcbbf"))
+    # result = []
+    # consecutive_sum([1,2,3,4,5],result)
+    # print(result)
+    test = [1,2,3,4,5]
+    allPossibleComb(test, 3)
 
 if __name__== "__main__":
     main()
