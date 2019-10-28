@@ -403,14 +403,73 @@ Output: "bab"
 Note: "aba" is also a valid answer.
     """
 
-         
+"""
+11. Container With Most Water
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). 
+n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
+Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+Input: [1,8,6,2,5,4,8,3,7]
+Output: 49
+"""
+
+def maxArea(height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    i = 0
+    j = len(height) -1
+    maxArea = 0
+
+    while i < j:
+        h = height[i] if height[i] < height[j] else height[j]
+        width = j - i
+        if maxArea < h * width:
+            maxArea = h * width
+        
+        if height[i] < height[j]:
+            i+=1
+        else:
+            j-=1
+    return maxArea
+        
+""" 
+15. 3Sum
+
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
+Find all unique triplets in the array which gives the sum of zero.
+
+Note: The solution set must not contain duplicate triplets.
+
+Example:
+Given array nums = [-1, 0, 1, 2, -1, -4],
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+"""
+result = []
+def threeSum(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: List[List[int]]
+    """
+    x1 = nums.pop()
+
+
+
 
 def main():
     # result = []
     # consecutive_sum([1,2,3,4,5],result)
     # print(result)
-    test = [1,2,3,4,5]
-    allPossibleComb(test, 3)
+    # test = [1,2,3,4,5]
+    # allPossibleComb(test, 3)
+
+    lst = [1,8,6,2,5,4,8,3,7]
+    print(maxArea(lst))
 
 if __name__== "__main__":
     main()
