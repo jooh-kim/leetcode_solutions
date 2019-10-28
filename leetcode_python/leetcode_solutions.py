@@ -1,3 +1,4 @@
+import math
 """ 
 Problem: Movies On Flight 
 
@@ -393,15 +394,21 @@ def allPossibleCombHelper(arr, result, start, end, index, r):
         allPossibleCombHelper(arr, result, start+1, end, index+1, r)
         i+=1
 
-def longestPalindrome(self, s):
+i = 0
+def longestPalindrome(s):
     """
     :type s: str
     :rtype: str
 
     Input: "babad"
-Output: "bab"
-Note: "aba" is also a valid answer.
+    Output: "bab"
+    Note: "aba" is also a valid answer.
     """
+    if s == null or len(s) < 1:
+        return ""
+    
+    
+
 
 """
 11. Container With Most Water
@@ -459,6 +466,30 @@ def threeSum(self, nums):
     x1 = nums.pop()
 
 
+def canJump(nums):
+    """
+    :type nums: List[int]
+    :rtype: bool
+    """
+    if len(nums) < 1:
+        return False
+    return canJumpHelper(nums,0, 0)
+
+def canJumpHelper(nums, index, steps):
+    arr_len = len(nums)
+    max_step = nums[index]
+    # possible steps from the value of this index
+    if index == len(nums)-1:
+        return True
+    if max_step == 0 and arr_len > 0:
+        return False
+    for steps in range(nums[index]):
+        steps += 1      # can't step with 0
+        if steps > len(nums):
+            return False
+        else:
+            index += steps
+            return canJumpHelper(nums, index,  steps)
 
 
 def main():
@@ -467,9 +498,10 @@ def main():
     # print(result)
     # test = [1,2,3,4,5]
     # allPossibleComb(test, 3)
-
-    lst = [1,8,6,2,5,4,8,3,7]
-    print(maxArea(lst))
+    # s = "babaddtattarrattatddetartrateedredividerb"
+    # s = "bb"
+    # print(longestPalindrome(s))
+    print(canJump([2,0,0]))
 
 if __name__== "__main__":
     main()
