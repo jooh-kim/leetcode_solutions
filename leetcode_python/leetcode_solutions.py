@@ -1,5 +1,12 @@
 import math
 import sys
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 """ 
 Problem: Movies On Flight 
 
@@ -237,12 +244,6 @@ Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 """
 
-# Definition for singly-linked list.
-class ListNode(object):
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
 #Try to solve with recusion later.
 def addTwoNumbers(self, l1, l2):
     """
@@ -396,6 +397,7 @@ def allPossibleCombHelper(arr, result, start, end, index, r):
         i+=1
 
 i = 0
+
 def longestPalindrome(s):
     """
     :type s: str
@@ -439,12 +441,6 @@ def longestPalindrome_Helper(s,start,end):
             end += 1
     length = end + 1 - start
     return length, start, end
-
-
-
-    
-    
-
 
 """
 11. Container With Most Water
@@ -557,6 +553,45 @@ def maxProfit(prices):
                 max_profit = p - lowest_price
     return max_profit
 
+""" 
+Given a linked list, rotate the list to the right by k places, where k is non-negative.
+Input: 1->2->3->4->5->NULL, k = 2
+Output: 4->5->1->2->3->NULL
+Explanation:
+rotate 1 steps to the right: 5->1->2->3->4->NULL
+rotate 2 steps to the right: 4->5->1->2->3->NULL
+"""
+def rotateRight(head, k):
+    """
+    :type head: ListNode
+    :type k: int
+    :rtype: ListNode
+    """
+    if head == None:
+        return None
+    #   put them into a list
+    lst = []
+    while head != None:
+        temp = head
+        lst.append(temp)
+        head = head.next
+    linkedListLen = len(lst)
+    if k > linkedListLen:
+        k = k % linkedListLen
+        print(k)
+    while k > 0:
+        end_item = lst.pop()
+        lst.insert(0,end_item)
+        k -= 1
+    
+    temp = ListNode(0)
+    head = temp
+    for node in lst:
+        temp.next = node
+        temp = temp.next
+    temp.next = None
+    return head.next
+
 
 def main():
     # result = []
@@ -564,10 +599,24 @@ def main():
     # print(result)
     # test = [1,2,3,4,5]
     # allPossibleComb(test, 3)
-    s = "cbbd"
+    # s = "cbbd"
     # s = "bb"
-    print(longestPalindrome(s))
+    # print(longestPalindrome(s))
     # print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
+    l1 = ListNode(1)
+    l2 = ListNode(2)
+    l3 = ListNode(3)
+    # l4 = ListNode(4)
+    # l5 = ListNode(5)
+    l1.next = l2
+    l2.next = l3
+    # l3.next = l4
+    # l4.next = l5
+    l3.next = None
+    answer = rotateRight(l1, 20)
+    while answer != None:
+        print(answer.val)
+        answer = answer.next
 
 if __name__== "__main__":
     main()
