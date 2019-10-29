@@ -405,8 +405,43 @@ def longestPalindrome(s):
     Output: "bab"
     Note: "aba" is also a valid answer.
     """
-    if s == null or len(s) < 1:
+    start_index = 0
+    end_index = 0
+    max_len = 0
+    if s == "":
         return ""
+    elif len(s) == 1:
+        return s[0]
+    for index in range(len(s)-1):
+        len1, x1, y1 = longestPalindrome_Helper(s,index,index)
+        len2, x2, y2 = longestPalindrome_Helper(s,index,index+1)
+        if len1 > len2 and len1 > max_len:
+            max_len = len1
+            start_index = x1
+            end_index = y1
+        elif len2 > len1 and len2 > max_len:
+            max_len = len2
+            start_index = x2
+            end_index = y2
+    answer = s[start_index:end_index+1]
+    return answer
+
+    
+def longestPalindrome_Helper(s,start,end):
+    if s[start] != s[end]:
+        return 0, start, end
+    while start - 1 >= 0 and end + 1 < len(s):
+        # there is room to expand.
+        if s[start-1] != s[end+1]:
+            break
+        else:
+            start -= 1
+            end += 1
+    length = end + 1 - start
+    return length, start, end
+
+
+
     
     
 
@@ -529,10 +564,10 @@ def main():
     # print(result)
     # test = [1,2,3,4,5]
     # allPossibleComb(test, 3)
-    # s = "babaddtattarrattatddetartrateedredividerb"
+    s = "cbbd"
     # s = "bb"
-    # print(longestPalindrome(s))
-    print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
+    print(longestPalindrome(s))
+    # print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
 
 if __name__== "__main__":
     main()
