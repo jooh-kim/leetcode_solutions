@@ -629,6 +629,114 @@ def romanToInt(s):
             i += 1
     return result
 
+def longestCommonPrefix(strs):
+    """
+    :type strs: List[str]
+    :rtype: str
+    """
+    lcp = ""
+    if strs == []:
+        return lcp
+    
+    i = 0
+    flag = True
+    while i < len(strs[0]) and flag == True:
+        c = strs[0][i]
+        j = 1
+        while j < len(strs) and i < len(strs[j]):
+            if c != strs[j][i]:
+                flag = False
+                break
+            if j == len(strs)-1 and flag == True:
+                lcp += c    
+            j+=1
+        if flag == False:
+            break
+        i += 1 
+    return lcp
+
+"""  
+Given a sorted array nums, 
+remove the duplicates in-place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, 
+you must do this by modifying the input array in-place with O(1) extra memory.
+"""
+def removeDuplicates(nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    # My thought and intuition at first.
+    # hold the item as a comparator and pop the duplicates as you see it.
+    # if they are not the same, then you have a new comparative itme.
+    if nums == []:
+        return 0
+    if len(nums) == 1:
+        return 1
+    i = 1
+    item = nums[0]
+    while i < len(nums):
+        if item == nums[i]:
+            nums.pop(i)
+        else:
+            item = nums[i]
+            i += 1
+    print(nums)
+    return len(nums)
+
+""" 
+Implement strStr().
+
+Return the index of the first occurrence of needle in haystack, 
+or -1 if needle is not part of haystack.
+
+Example 1:
+
+Input: haystack = "hello", needle = "ll"
+Output: 2
+Example 2:
+
+Input: haystack = "aaaaa", needle = "bba"
+Output: -1
+"""
+def strStr(self, haystack, needle):
+    """
+    :type haystack: str
+    :type needle: str
+    :rtype: int
+    """
+    if needle == "":
+        return 0
+    if haystack == "" or len(needle) > len(haystack):
+        return -1
+    index = 0
+    i = 0
+    j = 0
+    if needle in haystack:
+        while i < len(haystack):
+            if haystack[i] == needle[j]:
+                return i
+            i += 1
+    return -1
+
+""" 
+Swap Nodes in Pairs
+Given a linked list, swap every two adjacent nodes and return its head.
+
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+Example:
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+"""
+def swapPairs(self, head):
+    """
+    :type head: ListNode
+    :rtype: ListNode
+    """
+    if head.next == None:
+        
+
+
 def main():
     # result = []
     # consecutive_sum([1,2,3,4,5],result)
@@ -638,23 +746,25 @@ def main():
     # s = "cbbd"
     # s = "bb"
     # print(longestPalindrome(s))
-    # print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
-    l1 = ListNode(1)
-    l2 = ListNode(2)
-    l3 = ListNode(3)
-    # l4 = ListNode(4)
-    # l5 = ListNode(5)
-    l1.next = l2
-    l2.next = l3
-    # l3.next = l4
-    # l4.next = l5
-    l3.next = None
-    answer = rotateRight(l1, 20)
-    while answer != None:
-        print(answer.val)
-        answer = answer.next
+    # # print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
+    # l1 = ListNode(1)
+    # l2 = ListNode(2)
+    # l3 = ListNode(3)
+    # # l4 = ListNode(4)
+    # # l5 = ListNode(5)
+    # l1.next = l2
+    # l2.next = l3
+    # # l3.next = l4
+    # # l4.next = l5
+    # l3.next = None
+    # answer = rotateRight(l1, 20)
+    # while answer != None:
+    #     print(answer.val)
+    #     answer = answer.next
 
-    print("answer: ", romanToInt("XXXLIV"))
+    # print("answer: ", romanToInt("XXXLIV"))
+    # print("answer: ", longestCommonPrefix(["aa","a"]))
+    print ("answer: ", removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
 
 if __name__== "__main__":
     main()
