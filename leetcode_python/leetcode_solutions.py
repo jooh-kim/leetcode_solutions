@@ -700,7 +700,7 @@ Example 2:
 Input: haystack = "aaaaa", needle = "bba"
 Output: -1
 """
-def strStr(self, haystack, needle):
+def strStr(haystack, needle):
     """
     :type haystack: str
     :type needle: str
@@ -710,14 +710,14 @@ def strStr(self, haystack, needle):
         return 0
     if haystack == "" or len(needle) > len(haystack):
         return -1
-    index = 0
+    hay_len = len(haystack)
+    # needle_len = len(needle)
     i = 0
-    j = 0
-    if needle in haystack:
-        while i < len(haystack):
-            if haystack[i] == needle[j]:
-                return i
-            i += 1
+    while i + len(needle) - 1 < hay_len:
+        if haystack[i:i+len(needle)] == needle:
+            return i
+        else:
+            i +=1 
     return -1
 
 """ 
@@ -728,14 +728,25 @@ You may not modify the values in the list's nodes, only nodes itself may be chan
 Example:
 Given 1->2->3->4, you should return the list as 2->1->4->3.
 """
-def swapPairs(self, head):
+def swapPairs(head):
     """
     :type head: ListNode
     :rtype: ListNode
     """
-    if head.next == None:
-        
+    if head == None or head.next == None:
+        return head
+    dummy = ListNode(0)
+    dummy.next = head
+    cur = dummy
 
+    while cur.next and cur.next.next:
+        f = cur.next
+        s = cur.next.next
+        f.next = s.next
+        s.next = f
+        cur.next = s
+        cur = f
+    return dummy.next
 
 def main():
     # result = []
@@ -750,21 +761,24 @@ def main():
     # l1 = ListNode(1)
     # l2 = ListNode(2)
     # l3 = ListNode(3)
-    # # l4 = ListNode(4)
-    # # l5 = ListNode(5)
+    # l4 = ListNode(4)
+    # l5 = ListNode(5)
     # l1.next = l2
     # l2.next = l3
-    # # l3.next = l4
-    # # l4.next = l5
+    # l3.next = l4
+    # l4.next = l5
     # l3.next = None
     # answer = rotateRight(l1, 20)
+    # answer = swapPairs(l1)
     # while answer != None:
     #     print(answer.val)
     #     answer = answer.next
-
+    haystack = "aa"
+    needle = "a"
+    print(strStr(haystack, needle))
     # print("answer: ", romanToInt("XXXLIV"))
     # print("answer: ", longestCommonPrefix(["aa","a"]))
-    print ("answer: ", removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+    # print ("answer: ", removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
 
 if __name__== "__main__":
     main()
