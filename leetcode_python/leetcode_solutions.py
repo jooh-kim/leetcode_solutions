@@ -748,6 +748,85 @@ def swapPairs(head):
         cur = f
     return dummy.next
 
+""" 
+42. Trapping Rain Water
+Given n non-negative integers representing an elevation map 
+where the width of each bar is 1, 
+compute how much water it is able to trap after raining.
+
+Input: [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+"""
+def trap(height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    total_water = 0
+    i = 1
+    j = len(height) - 1
+    if len(height) < 3:
+        return total_water
+    left = height[0]
+    while i < len(height):
+        if i == len(height) -1:
+            break
+        right = height[i]
+        if left > right:
+            total_water += left-right
+        else:
+            left = right
+        i += 1
+    return total_water
+
+""" 
+Given an unsorted array nums, reorder it such that 
+nums[0] < nums[1] > nums[2] < nums[3]....
+
+Input: nums = [1, 5, 1, 1, 6, 4]
+Output: One possible answer is [1, 4, 1, 5, 1, 6].
+"""
+def wiggleSort(nums):
+    """
+    :type nums: List[int]
+    :rtype: None Do not return anything, modify nums in-place instead.
+    """
+    i = 0
+    j = 1
+    # 0 = '<', 1 = '>'
+    sign = 0
+    if len(nums) < 2:
+        return
+    while j < len(nums):
+        if sign == 0:
+            if nums[i] >= nums[j]:
+                # 'i' less than 'j'
+                k = j
+                while k < len(nums):
+                    if nums[k] > nums[i]:
+                        temp = nums[j]
+                        nums[j] = nums[k]
+                        nums[k] = temp
+                        break
+                    k+=1
+            sign = 1
+        else:
+            # 'i' greater than 'j'
+            if nums[i] <= nums[j]:
+                k = j
+                while k < len(nums):
+                    if nums[i] > nums[k]:
+                        temp = nums[j]
+                        nums[j] = nums[k]
+                        nums[k] = temp
+                        break
+                    k+=1
+            sign = 0
+        i += 1
+        j += 1
+
+
+
 def main():
     # result = []
     # consecutive_sum([1,2,3,4,5],result)
@@ -773,12 +852,16 @@ def main():
     # while answer != None:
     #     print(answer.val)
     #     answer = answer.next
-    haystack = "aa"
-    needle = "a"
-    print(strStr(haystack, needle))
+    # haystack = "aa"
+    # needle = "a"
+    # print(strStr(haystack, needle))
     # print("answer: ", romanToInt("XXXLIV"))
     # print("answer: ", longestCommonPrefix(["aa","a"]))
     # print ("answer: ", removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+    # print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+    nums = [1, 3, 2, 2, 3, 1]
+    wiggleSort(nums)
+    print(nums)
 
 if __name__== "__main__":
     main()
