@@ -1,3 +1,6 @@
+# collections for deque
+import collections
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):
@@ -88,23 +91,48 @@ BFS - Breadth First Search
 
 Queue is used to help the algorithm
 """
+def levelOrder(root):
+    """
+    :type root: TreeNode
+    :rtype: List[List[int]]
+    """
+    if not root:
+        return 
+    result = []
 
-        
+    queue = collections.deque([root])
+
+    while queue:
+
+        count = len(queue)
+        temp = []
+        while count > 0:
+            node = queue.popleft()
+            if node.val not in result:
+                # result.append(node.val)
+                if node.left is not None:
+                    queue.append(node.left)
+                if node.right is not None:
+                    queue.append(node.right)
+            temp.append(node.val)
+            count -= 1
+        result.append(temp)
+    return result       
 
 def main():
     # sol = Solution()
     root = TreeNode(1) 
     root.left      = TreeNode(2) 
-    # root.right     = TreeNode(3) 
+    root.right     = TreeNode(3) 
 
     root.left.left  = TreeNode(4) 
-    # root.left.right  = TreeNode(5) 
+    root.left.right  = TreeNode(5) 
 
-    # root.right.left = TreeNode(6)
-    # root.right.right = TreeNode(7)
+    root.right.left = TreeNode(6)
+    root.right.right = TreeNode(7)
 
 
-    print(postorderTraversal(root))
+    print(levelOrder(root))
 
 if __name__ == "__main__":
     main()
