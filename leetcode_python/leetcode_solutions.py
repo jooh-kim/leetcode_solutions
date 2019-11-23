@@ -1,5 +1,6 @@
 import math
 import sys
+import collections
 
 # Definition for singly-linked list.
 class ListNode(object):
@@ -8,7 +9,18 @@ class ListNode(object):
         self.next = None
 
 """ 
-Problem: Movies On Flight 
+TO-DO List
+Fix and Finish
+    - 134
+    
+Update
+    - 2 - #Try to solve with recusion later
+
+"""
+
+
+""" 
+Problem: Movies On Flight - From Discussion
 
 You are on a flight and wanna watch two movies during this flight.
 You are given List<Integer> movieDurations which includes all the movie durations.
@@ -50,7 +62,7 @@ def moviesOnFlight(movies, d):
     return [movies.index(movies_sorted[i]),movies.index(movies_sorted[j])]    
 
 """ 
-Problem: Treasure Island 1
+Problem: Treasure Island 1 - From Discussion
 
 Assume the map area is a two dimensional grid, represented by a matrix of characters. 
 You must start from the top-left corner of the map and can move one block up, down, left or right at a time. 
@@ -115,6 +127,8 @@ def treasureIslandOne(graph):
     return 0
 
 """  
+20 Valid Parentheses
+
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', 
 determine if the input string is valid.
 
@@ -145,6 +159,8 @@ def isValid(s):
         return False
 
 """  
+53 - Maximum Subarray
+
 Given an integer array nums, find the contiguous subarray (containing at least one number) 
 which has the largest sum and return its sum.
 
@@ -164,6 +180,8 @@ def maxSubArray(nums):
         return max_global
 
 """ 
+49 - Group Anagrams    
+
 Given an array of strings, group anagrams together.
 
 Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
@@ -204,6 +222,8 @@ def groupAnagrams(strs):
     print(result)
 
 """  
+134 - Gas Station
+
 There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 
 You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). 
@@ -232,7 +252,10 @@ def canCompleteCircuit(gas, cost):
                 return i
             i+=1
         return i
+
 """ 
+2 - Add Two Numbers
+
 You are given two non-empty linked lists representing two non-negative integers. 
 The digits are stored in reverse order and each of their nodes contain a single digit. 
 Add the two numbers and return it as a linked list.
@@ -243,8 +266,6 @@ Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 """
-
-#Try to solve with recusion later.
 def addTwoNumbers(self, l1, l2):
     """
     :type l1: ListNode
@@ -293,6 +314,8 @@ def addTwoNumbers(self, l1, l2):
     return result_head.next
 
 """ 
+3 - Longest Substring Without Repeating Characters  
+
 Longest Substring Without Repeating Characters
 
 Given a string, find the length of the longest substring without repeating characters.
@@ -342,35 +365,6 @@ def lengthOfLongestSubstring2(s):
         dicts[value] = i
     return maxlength
 
-def recursion_sum(int_arr):
-    if int_arr == []:
-        return 0
-    else:
-        return int_arr.pop() + recursion_sum(int_arr)
-
-def sumTriangle(arr):
-
-    if len(arr) <= 1:
-        print(arr)
-        return
-
-    # at every call, sum should happen.
-    temp_arr = [0]*(len(arr)-1)
-    i = 0
-    while i < len(arr) - 1:
-        temp_arr[i] = arr[i]+arr[i+1]
-        i+=1
-    
-    sumTriangle(temp_arr)
-    print(arr)
-
-def consecutive_sum(arr,result):
-    if len(arr) < 2:
-        return
-    consecutive_sum(arr[1:],result)
-    result.append(arr[0]+arr[1])
-
-    return
 
 """ 
 if input array is {1, 2, 3, 4} and r is 2, 
