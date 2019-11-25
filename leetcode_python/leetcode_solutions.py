@@ -392,6 +392,13 @@ def allPossibleCombHelper(arr, result, start, end, index, r):
 
 i = 0
 
+
+""" 
+5 - Longest Palindromic Substring    
+
+Given a string s, find the longest palindromic substring in s. 
+You may assume that the maximum length of s is 1000.
+"""
 def longestPalindrome(s):
     """
     :type s: str
@@ -437,7 +444,7 @@ def longestPalindrome_Helper(s,start,end):
     return length, start, end
 
 """
-11. Container With Most Water
+11 - Container With Most Water
 Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). 
 n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
 Find two lines, which together with x-axis forms a container, such that the container contains the most water.
@@ -445,7 +452,6 @@ Find two lines, which together with x-axis forms a container, such that the cont
 Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
 """
-
 def maxArea(height):
     """
     :type height: List[int]
@@ -468,7 +474,7 @@ def maxArea(height):
     return maxArea
         
 """ 
-15. 3Sum
+15 - 3Sum
 
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
 Find all unique triplets in the array which gives the sum of zero.
@@ -491,7 +497,15 @@ def threeSum(self, nums):
     """
     x1 = nums.pop()
 
+""" 
+55 - Jump Game
 
+Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Determine if you are able to reach the last index. 
+"""
 def canJump(nums):
     """
     :type nums: List[int]
@@ -518,6 +532,7 @@ def canJumpHelper(nums, index, steps):
             return canJumpHelper(nums, index,  steps)
 
 """ 
+121 - Best Time to Buy and Sell Stock
 Say you have an array for which the ith element is the price of a given stock on day i.
 If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), 
 design an algorithm to find the maximum profit.
@@ -547,7 +562,8 @@ def maxProfit(prices):
                 max_profit = p - lowest_price
     return max_profit
 
-""" 
+"""
+61 - Rotate List
 Given a linked list, rotate the list to the right by k places, where k is non-negative.
 Input: 1->2->3->4->5->NULL, k = 2
 Output: 4->5->1->2->3->NULL
@@ -586,6 +602,10 @@ def rotateRight(head, k):
     temp.next = None
     return head.next
 
+
+""" 
+13 - Roman to Integer  
+"""
 def romanToInt(s):
     """
     :type s: str
@@ -623,6 +643,14 @@ def romanToInt(s):
             i += 1
     return result
 
+
+""" 
+14 - Longest Common Prefix
+
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+"""
 def longestCommonPrefix(strs):
     """
     :type strs: List[str]
@@ -650,6 +678,8 @@ def longestCommonPrefix(strs):
     return lcp
 
 """  
+26 - Remove Duplicates from Sorted Array
+
 Given a sorted array nums, 
 remove the duplicates in-place such that each element appear only once and return the new length.
 
@@ -680,6 +710,8 @@ def removeDuplicates(nums):
     return len(nums)
 
 """ 
+28 - Implement strStr()
+
 Implement strStr().
 
 Return the index of the first occurrence of needle in haystack, 
@@ -714,7 +746,10 @@ def strStr(haystack, needle):
             i +=1 
     return -1
 
+
 """ 
+24 - Swap Nodes in Pairs
+
 Swap Nodes in Pairs
 Given a linked list, swap every two adjacent nodes and return its head.
 
@@ -741,6 +776,7 @@ def swapPairs(head):
         cur.next = s
         cur = f
     return dummy.next
+
 
 """ 
 42. Trapping Rain Water
@@ -773,7 +809,10 @@ def trap(height):
         i += 1
     return total_water
 
+
 """ 
+324 - Wiggle Sort II
+
 Given an unsorted array nums, reorder it such that 
 nums[0] < nums[1] > nums[2] < nums[3]....
 
