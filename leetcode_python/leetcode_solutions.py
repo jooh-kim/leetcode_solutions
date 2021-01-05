@@ -1,5 +1,6 @@
 import math
 import sys
+import collections
 
 # Definition for singly-linked list.
 class ListNode(object):
@@ -8,7 +9,18 @@ class ListNode(object):
         self.next = None
 
 """ 
-Problem: Movies On Flight 
+TO-DO List
+Fix and Finish
+    - 134
+    
+Update
+    - 2 - #Try to solve with recusion later
+
+"""
+
+
+""" 
+Problem: Movies On Flight - From Discussion
 
 You are on a flight and wanna watch two movies during this flight.
 You are given List<Integer> movieDurations which includes all the movie durations.
@@ -50,7 +62,7 @@ def moviesOnFlight(movies, d):
     return [movies.index(movies_sorted[i]),movies.index(movies_sorted[j])]    
 
 """ 
-Problem: Treasure Island 1
+Problem: Treasure Island 1 - From Discussion
 
 Assume the map area is a two dimensional grid, represented by a matrix of characters. 
 You must start from the top-left corner of the map and can move one block up, down, left or right at a time. 
@@ -115,6 +127,8 @@ def treasureIslandOne(graph):
     return 0
 
 """  
+20 Valid Parentheses
+
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', 
 determine if the input string is valid.
 
@@ -145,6 +159,8 @@ def isValid(s):
         return False
 
 """  
+53 - Maximum Subarray
+
 Given an integer array nums, find the contiguous subarray (containing at least one number) 
 which has the largest sum and return its sum.
 
@@ -164,6 +180,8 @@ def maxSubArray(nums):
         return max_global
 
 """ 
+49 - Group Anagrams    
+
 Given an array of strings, group anagrams together.
 
 Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
@@ -204,6 +222,8 @@ def groupAnagrams(strs):
     print(result)
 
 """  
+134 - Gas Station
+
 There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 
 You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). 
@@ -232,7 +252,10 @@ def canCompleteCircuit(gas, cost):
                 return i
             i+=1
         return i
+
 """ 
+2 - Add Two Numbers
+
 You are given two non-empty linked lists representing two non-negative integers. 
 The digits are stored in reverse order and each of their nodes contain a single digit. 
 Add the two numbers and return it as a linked list.
@@ -243,8 +266,6 @@ Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 """
-
-#Try to solve with recusion later.
 def addTwoNumbers(self, l1, l2):
     """
     :type l1: ListNode
@@ -293,6 +314,8 @@ def addTwoNumbers(self, l1, l2):
     return result_head.next
 
 """ 
+3 - Longest Substring Without Repeating Characters  
+
 Longest Substring Without Repeating Characters
 
 Given a string, find the length of the longest substring without repeating characters.
@@ -342,35 +365,6 @@ def lengthOfLongestSubstring2(s):
         dicts[value] = i
     return maxlength
 
-def recursion_sum(int_arr):
-    if int_arr == []:
-        return 0
-    else:
-        return int_arr.pop() + recursion_sum(int_arr)
-
-def sumTriangle(arr):
-
-    if len(arr) <= 1:
-        print(arr)
-        return
-
-    # at every call, sum should happen.
-    temp_arr = [0]*(len(arr)-1)
-    i = 0
-    while i < len(arr) - 1:
-        temp_arr[i] = arr[i]+arr[i+1]
-        i+=1
-    
-    sumTriangle(temp_arr)
-    print(arr)
-
-def consecutive_sum(arr,result):
-    if len(arr) < 2:
-        return
-    consecutive_sum(arr[1:],result)
-    result.append(arr[0]+arr[1])
-
-    return
 
 """ 
 if input array is {1, 2, 3, 4} and r is 2, 
@@ -398,6 +392,13 @@ def allPossibleCombHelper(arr, result, start, end, index, r):
 
 i = 0
 
+
+""" 
+5 - Longest Palindromic Substring    
+
+Given a string s, find the longest palindromic substring in s. 
+You may assume that the maximum length of s is 1000.
+"""
 def longestPalindrome(s):
     """
     :type s: str
@@ -443,7 +444,7 @@ def longestPalindrome_Helper(s,start,end):
     return length, start, end
 
 """
-11. Container With Most Water
+11 - Container With Most Water
 Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). 
 n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). 
 Find two lines, which together with x-axis forms a container, such that the container contains the most water.
@@ -451,7 +452,6 @@ Find two lines, which together with x-axis forms a container, such that the cont
 Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
 """
-
 def maxArea(height):
     """
     :type height: List[int]
@@ -474,7 +474,7 @@ def maxArea(height):
     return maxArea
         
 """ 
-15. 3Sum
+15 - 3Sum
 
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? 
 Find all unique triplets in the array which gives the sum of zero.
@@ -497,7 +497,15 @@ def threeSum(self, nums):
     """
     x1 = nums.pop()
 
+""" 
+55 - Jump Game
 
+Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Determine if you are able to reach the last index. 
+"""
 def canJump(nums):
     """
     :type nums: List[int]
@@ -524,6 +532,7 @@ def canJumpHelper(nums, index, steps):
             return canJumpHelper(nums, index,  steps)
 
 """ 
+121 - Best Time to Buy and Sell Stock
 Say you have an array for which the ith element is the price of a given stock on day i.
 If you were only permitted to complete at most one transaction (i.e., buy one and sell one share of the stock), 
 design an algorithm to find the maximum profit.
@@ -553,7 +562,8 @@ def maxProfit(prices):
                 max_profit = p - lowest_price
     return max_profit
 
-""" 
+"""
+61 - Rotate List
 Given a linked list, rotate the list to the right by k places, where k is non-negative.
 Input: 1->2->3->4->5->NULL, k = 2
 Output: 4->5->1->2->3->NULL
@@ -592,6 +602,10 @@ def rotateRight(head, k):
     temp.next = None
     return head.next
 
+
+""" 
+13 - Roman to Integer  
+"""
 def romanToInt(s):
     """
     :type s: str
@@ -629,6 +643,223 @@ def romanToInt(s):
             i += 1
     return result
 
+
+""" 
+14 - Longest Common Prefix
+
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+"""
+def longestCommonPrefix(strs):
+    """
+    :type strs: List[str]
+    :rtype: str
+    """
+    lcp = ""
+    if strs == []:
+        return lcp
+    
+    i = 0
+    flag = True
+    while i < len(strs[0]) and flag == True:
+        c = strs[0][i]
+        j = 1
+        while j < len(strs) and i < len(strs[j]):
+            if c != strs[j][i]:
+                flag = False
+                break
+            if j == len(strs)-1 and flag == True:
+                lcp += c    
+            j+=1
+        if flag == False:
+            break
+        i += 1 
+    return lcp
+
+"""  
+26 - Remove Duplicates from Sorted Array
+
+Given a sorted array nums, 
+remove the duplicates in-place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, 
+you must do this by modifying the input array in-place with O(1) extra memory.
+"""
+def removeDuplicates(nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    # My thought and intuition at first.
+    # hold the item as a comparator and pop the duplicates as you see it.
+    # if they are not the same, then you have a new comparative itme.
+    if nums == []:
+        return 0
+    if len(nums) == 1:
+        return 1
+    i = 1
+    item = nums[0]
+    while i < len(nums):
+        if item == nums[i]:
+            nums.pop(i)
+        else:
+            item = nums[i]
+            i += 1
+    print(nums)
+    return len(nums)
+
+""" 
+28 - Implement strStr()
+
+Implement strStr().
+
+Return the index of the first occurrence of needle in haystack, 
+or -1 if needle is not part of haystack.
+
+Example 1:
+
+Input: haystack = "hello", needle = "ll"
+Output: 2
+Example 2:
+
+Input: haystack = "aaaaa", needle = "bba"
+Output: -1
+"""
+def strStr(haystack, needle):
+    """
+    :type haystack: str
+    :type needle: str
+    :rtype: int
+    """
+    if needle == "":
+        return 0
+    if haystack == "" or len(needle) > len(haystack):
+        return -1
+    hay_len = len(haystack)
+    # needle_len = len(needle)
+    i = 0
+    while i + len(needle) - 1 < hay_len:
+        if haystack[i:i+len(needle)] == needle:
+            return i
+        else:
+            i +=1 
+    return -1
+
+
+""" 
+24 - Swap Nodes in Pairs
+
+Swap Nodes in Pairs
+Given a linked list, swap every two adjacent nodes and return its head.
+
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+Example:
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+"""
+def swapPairs(head):
+    """
+    :type head: ListNode
+    :rtype: ListNode
+    """
+    if head == None or head.next == None:
+        return head
+    dummy = ListNode(0)
+    dummy.next = head
+    cur = dummy
+
+    while cur.next and cur.next.next:
+        f = cur.next
+        s = cur.next.next
+        f.next = s.next
+        s.next = f
+        cur.next = s
+        cur = f
+    return dummy.next
+
+
+""" 
+42. Trapping Rain Water
+Given n non-negative integers representing an elevation map 
+where the width of each bar is 1, 
+compute how much water it is able to trap after raining.
+
+Input: [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+"""
+def trap(height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    total_water = 0
+    i = 1
+    j = len(height) - 1
+    if len(height) < 3:
+        return total_water
+    left = height[0]
+    while i < len(height):
+        if i == len(height) -1:
+            break
+        right = height[i]
+        if left > right:
+            total_water += left-right
+        else:
+            left = right
+        i += 1
+    return total_water
+
+
+""" 
+324 - Wiggle Sort II
+
+Given an unsorted array nums, reorder it such that 
+nums[0] < nums[1] > nums[2] < nums[3]....
+
+Input: nums = [1, 5, 1, 1, 6, 4]
+Output: One possible answer is [1, 4, 1, 5, 1, 6].
+"""
+def wiggleSort(nums):
+    """
+    :type nums: List[int]
+    :rtype: None Do not return anything, modify nums in-place instead.
+    """
+    i = 0
+    j = 1
+    # 0 = '<', 1 = '>'
+    sign = 0
+    if len(nums) < 2:
+        return
+    while j < len(nums):
+        if sign == 0:
+            if nums[i] >= nums[j]:
+                # 'i' less than 'j'
+                k = j
+                while k < len(nums):
+                    if nums[k] > nums[i]:
+                        temp = nums[j]
+                        nums[j] = nums[k]
+                        nums[k] = temp
+                        break
+                    k+=1
+            sign = 1
+        else:
+            # 'i' greater than 'j'
+            if nums[i] <= nums[j]:
+                k = j
+                while k < len(nums):
+                    if nums[i] > nums[k]:
+                        temp = nums[j]
+                        nums[j] = nums[k]
+                        nums[k] = temp
+                        break
+                    k+=1
+            sign = 0
+        i += 1
+        j += 1
+
+
+
 def main():
     # result = []
     # consecutive_sum([1,2,3,4,5],result)
@@ -638,23 +869,32 @@ def main():
     # s = "cbbd"
     # s = "bb"
     # print(longestPalindrome(s))
-    # print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
-    l1 = ListNode(1)
-    l2 = ListNode(2)
-    l3 = ListNode(3)
+    # # print(maxProfit([1,2,3,1,1,1,1,3,2,1]))
+    # l1 = ListNode(1)
+    # l2 = ListNode(2)
+    # l3 = ListNode(3)
     # l4 = ListNode(4)
     # l5 = ListNode(5)
-    l1.next = l2
-    l2.next = l3
+    # l1.next = l2
+    # l2.next = l3
     # l3.next = l4
     # l4.next = l5
-    l3.next = None
-    answer = rotateRight(l1, 20)
-    while answer != None:
-        print(answer.val)
-        answer = answer.next
-
-    print("answer: ", romanToInt("XXXLIV"))
+    # l3.next = None
+    # answer = rotateRight(l1, 20)
+    # answer = swapPairs(l1)
+    # while answer != None:
+    #     print(answer.val)
+    #     answer = answer.next
+    # haystack = "aa"
+    # needle = "a"
+    # print(strStr(haystack, needle))
+    # print("answer: ", romanToInt("XXXLIV"))
+    # print("answer: ", longestCommonPrefix(["aa","a"]))
+    # print ("answer: ", removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+    # print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+    nums = [1, 3, 2, 2, 3, 1]
+    wiggleSort(nums)
+    print(nums)
 
 if __name__== "__main__":
     main()
