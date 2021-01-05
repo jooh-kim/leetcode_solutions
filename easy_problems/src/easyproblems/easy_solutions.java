@@ -6,26 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 class easy_solution {
-    public static void main(String[] args) {
 
-        easy_solution var1 = new easy_solution();
-
-        // twoSum Problem
-        /*
-        int[] arr = {1,4,7,9,5,8};
-        int[] ans;
-        ans = var1.twoSum(arr,10);
-        System.out.println(Arrays.toString(ans));
-        */
-
-        //int rel = var1.reverse(-123);
-        //boolean result = var1.isPalindrome(10);
-        //System.out.println(result);
-        ListNode head = new ListNode(0);
-        //String[] strs = {"flower","flow","flight"};
-    }
-
-    public int[] twoSum(int[] nums, int target) {
+    public static int[] twoSum(int[] nums, int target) {
         /*Given an array of integers, return indices of the two numbers such that they add up to a specific target.
         You may assume that each input would have exactly one solution, and you may not use the same element twice.
         Example:
@@ -51,7 +33,7 @@ class easy_solution {
         return sol;
     }
 
-    public int reverse(int x) {
+    public static int reverse(int x) {
         /*
             Given a 32-bit signed integer, reverse digits of an integer.
             Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−2^31,  2^31 − 1].
@@ -98,7 +80,7 @@ class easy_solution {
         }
     }
 
-    public boolean isPalindrome(int x) {
+    public static boolean isPalindrome(int x) {
         /*
         * Determine whether an integer is a palindrome.
         * An integer is a palindrome when it reads the same backward as forward.
@@ -123,7 +105,7 @@ class easy_solution {
 
     }
 
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         //initialize result listnode
         ListNode head = new ListNode(0);
         ListNode tail = head;
